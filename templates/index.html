@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Home - SIEM Alerting{% endblock %}
+
+{% block content %}
+<div class="text-center text-light">
+  <h1 class="display-4 fw-bold mb-3">Dynamic Risk Thresholds for SIEM Alerting Basedon Machine Learning</h1>
+  <p class="lead mb-4">Almost every organization with an internet presence is nowadays exposed to increasing
+    amounts of attempted cyber attacks year over year. Such an increase calls for a development of more effective
+    ways of detecting such attempts at compromise. In the article, a theoretical concept of a Dynamic Risk-Based
+    Alerting model for SIEM based on machine learning has been presented. An implementation of such a model
+    in a production environment has also been showcased, with both qualitative and quantitative data indicators
+    gathered from the environment. Conducting research on the effects of dynamic risk thresholds on incident
+    detection quality, particularly regarding the count of false positives and the efficiency of threat detection,
+    was a crucial part of this study and showed a 26% reduction in false positive/repeated alert volume. Based
+    on the gathered data and survey responses, it can be concluded that the proposed framework has value and
+    could be implemented as a novel alternative or supplementary method to typical, static risk-based alerting.</p>
+  <a href="{% url 'loginn' %}" class="btn btn-primary btn-lg me-2">Login</a>
+  <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Register</a>
+</div>
+{% endblock %}

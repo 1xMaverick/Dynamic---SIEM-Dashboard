@@ -1,0 +1,21 @@
+{% extends 'user/userbase.html' %}
+{% block title %}ML Prediction - SIEM Alerting{% endblock %}
+
+{% block content %}
+<h2 class="text-info mb-4">ML Prediction</h2>
+
+<form method="post" class="mb-4">
+    {% csrf_token %}
+    <label for="user_input" class="form-label text-light">Enter comma-separated features:</label>
+    <textarea name="user_input" id="user_input" rows="4" class="form-control bg-transparent text-white border-info">{{ user_input }}</textarea>
+    <button type="submit" class="btn btn-info text-dark mt-3 px-5 py-2 rounded-pill shadow-sm">Predict</button>
+</form>
+
+{% if error_message %}
+    <p class="text-danger fw-bold">{{ error_message }}</p>
+{% endif %}
+
+{% if result %}
+    <h3 class="text-info">Prediction Result: {{ result }}</h3>
+{% endif %}
+{% endblock %}

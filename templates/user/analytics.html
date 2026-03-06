@@ -1,0 +1,60 @@
+{% extends 'user/userbase.html' %}
+{% block title %}Prediction Analytics - SIEM Alerting{% endblock %}
+
+{% block content %}
+<h2 class="text-info mb-4">Prediction Analytics</h2>
+
+{% if labels and data %}
+<div class="card bg-dark bg-gradient text-light p-4 rounded shadow-lg mb-4">
+  <canvas id="predictionChart" width="400" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('predictionChart').getContext('2d');
+    const predictionChart = new Chart(ctx, {
+        type: 'bar',  // You can also use 'pie', 'doughnut', etc.
+        data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Prediction Count',
+                data: {{ data|safe }},
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 99, 132, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    precision: 0,
+                    ticks: { color: '#f8f9fa' }
+                },
+                x: {
+                    ticks: { color: '#f8f9fa' }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#f8f9fa' }
+                }
+            }
+        }
+    });
+</script>
+
+{% else %}
+<p class="text-light">No prediction data available for analytics.</p>
+{% endif %}
+{% endblock %}
